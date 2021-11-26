@@ -29,7 +29,7 @@ const fortuneTeller = {
   death: [
     {
       where: "the park",
-      how: "by falling over a rock and tripping down the rocky steps, hitting your head against a tree",
+      how: "by tripping on steps and hitting your head",
     },
     {
       where: "the forest",
@@ -68,14 +68,7 @@ const fortuneTeller = {
       how: "of drinking too much water",
     },
   ],
-  //   how: [
-  //     "stabbed to death in the forest",
-  //     "drowning in the bath",
-  //     "heart attack in bed",
-  //     "burned to death",
-  //     "dropping weights on yourself while doing presses",
-  //     "suffocation",
-  //   ],
+
   randomGenerateFortune(arr) {
     const randomNumber = Math.floor(Math.random() * arr.length);
     return arr[randomNumber];
@@ -83,7 +76,6 @@ const fortuneTeller = {
 
   whatYearWillIDie() {
     return this.randomGenerateFortune(this.year);
-    //   return yearOfDeath;
   },
 
   whichMonthWillIDie() {
@@ -110,13 +102,18 @@ const fortuneTeller = {
     let day = this.whatTimeOfDayDidIDie();
     let where = this.whereDidIDie();
     let how = this.howDidIDie();
+    if (where === "the ocean") {
+      let indexOfOcean = this.death.indexOf((word) => word === "the ocean");
+      let howOcean = this.death[indexOfOcean].how;
+      return `In the ${day} of the month of ${month}, in ${year}. You will die ${howOcean} in ${where}.`;
+    }
     return `In the ${day} of the month of ${month}, in ${year}. You will die ${how} in ${where}.`;
   },
 };
 
-console.log(fortuneTeller.whatTimeOfDayDidIDie());
-console.log(fortuneTeller.whichMonthWillIDie());
-console.log(fortuneTeller.whatYearWillIDie());
-console.log(fortuneTeller.whereDidIDie());
-console.log(fortuneTeller.howDidIDie());
+// console.log(fortuneTeller.whatTimeOfDayDidIDie());
+// console.log(fortuneTeller.whichMonthWillIDie());
+// console.log(fortuneTeller.whatYearWillIDie());
+// console.log(fortuneTeller.whereDidIDie());
+// console.log(fortuneTeller.howDidIDie());
 console.log(fortuneTeller.tellMeAboutMyDeath());
